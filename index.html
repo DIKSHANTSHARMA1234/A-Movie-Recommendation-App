@@ -1,0 +1,83 @@
+<!-- 1. Establish HTML document structure with doctype and language -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 2. Set the page title and character encoding -->
+    <meta charset="UTF-8">
+    <title>Movie Recommendation</title>
+
+    <!-- 3. Utilize global styles by means of internal CSS -->
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* 4. Style the button and search bar */
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        /* 7. Show recommended movies in grid layout if found */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* 9. Poster and title style the movie cards */
+        .movie-card {
+            background-color: #222;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 5. Include a centered page title -->
+    <h1>🎬 Movie Recommendation System</h1>
+
+    <!-- 6. Create an input form for user to input movie name -->
+    <form method="POST">
+        <input type="text" name="movie" placeholder="Enter a movie title" required>
+        <button type="submit">Recommend</button>
+    </form>
+
+    <!-- 7. Show recommended movies in grid layout if found -->
+    {% if recommendations %}
+        <div class="grid">
+            <!-- 8. Generate movie cards according to recommendation -->
+            {% for title, poster in recommendations %}
+                <div class="movie-card">
+                    <img src="{{ poster }}" alt="{{ title }}">
+                    <p><strong>{{ title }}</strong></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
